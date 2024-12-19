@@ -12,9 +12,9 @@ def Loading_Table_Data_CSV():
 
     Функция возвращает словарь если её работа прошла исправно и None при ошибке.
     '''
-    with open('telephones.csv', 'r') as Table:        # Открываем файл с помощью конструкции "with ... as", чтобы в дальнейшем не беспокоится о его закрытии. Table - переменная
+    with open('CSV_File.csv', 'r') as Table:        # Открываем файл с помощью конструкции "with ... as", чтобы в дальнейшем не беспокоится о его закрытии. Table - переменная
         
-        Reader = reader(Table, delimiter=';')        # Читаем данные из переменной Table построчно
+        Reader = reader(Table, delimiter = ';')        # Читаем данные из переменной Table построчно
         Cap = next(Reader)        # Извлекаем строку заголовков
         T_Data = [Elm for Elm in Reader]        # Считываем все остальные строки
         
@@ -66,7 +66,7 @@ def Save_Table_In_Pickle_Format(Dic):
     Данная функция преобразует словать в байтовый поток (сереализирует) и сохраняет в файл формата pickle.
     Возвращает файл с байтовой записью словаря.
     '''
-    with open('telephones.pickle', 'wb') as File:
+    with open('Pickle_File.pickle', 'wb') as File:
         dump(Dic, File)
 
 
@@ -75,10 +75,10 @@ def Save_Table_In_CSV_Format(Dic):
     Сохраняем табличку в CSV файле
     '''
     Keys, Value = (Dic.keys()), (Dic.values())
-    with open('new_telephones.csv', 'w+', newline = '') as Table:
-        writer = writer(Table, delimiter = ';')
-        writer.writerow(Keys)
-        writer.writerows(zip(*Value))
+    with open('New_CSV_File.csv', 'w+', newline = '') as Table:
+        Writer = writer(Table, delimiter = ';')
+        Writer.writerow(Keys)
+        Writer.writerows(zip(*Value))
 
 
 def Output_Rows_By_Number(Name, Dic, Start = 1, Stop = None, Overwriting = False):
@@ -226,7 +226,7 @@ def Change_Values(Dic, Values, Column = 1):
         return "Произошла ошибка при вводе!"
 
 
-def Change_Value(Dic, Value, Column=1, Row=1):
+def Change_Value(Dic, Value, Column = 1, Row = 1):
     '''
     Заменяем значение в таблице
     '''
